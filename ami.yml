@@ -1,0 +1,16 @@
+---
+- name: Install Java
+  hosts: all
+  become: true
+  remote_user: ubuntu
+
+  vars:
+    source_dir: /home/ubuntu/workspace/APPLICATION PIPELINES/app/files
+    dest_dir: /home/ubuntu/
+    files:
+      - config.yml
+      - properties.py
+      - start.sh
+
+  roles:
+    - java
