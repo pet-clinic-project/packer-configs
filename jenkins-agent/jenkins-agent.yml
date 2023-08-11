@@ -1,0 +1,8 @@
+---
+- name: Install and configure Apps required for jenkins-agent
+  hosts: all
+  become: true
+  remote_user: ubuntu
+
+  roles:
+    - jenkins-agent
