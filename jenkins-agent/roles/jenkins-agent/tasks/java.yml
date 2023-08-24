@@ -11,6 +11,7 @@
         name:
           - apt-transport-https
           - ca-certificates
+          - jq
           - curl
           - unzip
           - gnupg

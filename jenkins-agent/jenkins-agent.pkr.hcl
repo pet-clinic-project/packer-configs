@@ -4,7 +4,7 @@ variable "ami_id" {
 }
 
 locals {
-    app_name = "jenkins-agent"
+    app_name = "jenkins_agent_ami"
 }
 
 source "amazon-ebs" "jenkins-agent" {
