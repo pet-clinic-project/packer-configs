@@ -1,0 +1,33 @@
+---
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: 'yes'
+        update_cache: 'yes'
+
+    - name: Install dependencies
+      become: true
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - jq
+          - curl
+          - unzip
+          - gnupg
+          - lsb-release
+          - wget
+          - software-properties-common
+        state: present
+
+    - name: Install JDK
+      become: true
+      apt:
+        name: openjdk-17-jdk
+        state: latest
+
+    - name: Install mvn
+      become: true
+      apt:
+        name: maven
+        state: present

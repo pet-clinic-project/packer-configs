@@ -1,0 +1,56 @@
+---
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+        state: present
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Create Docker user
+      user:
+        name: "{{ ansible_user }}"
+        state: present
+        create_home: yes
+
+    - name: Add user to the 'docker' group
+      user:
+        name: "{{ ansible_user }}"
+        append: yes
+        groups: docker
+
+    - name: Create rc.local file
+      become: true
+      copy:
+        content: |
+          #!/bin/bash
+          chmod 666 /var/run/docker.sock
+        dest: /etc/rc.local
+
+    - name: Make rc.local executable
+      become: true
+      file:
+        path: /etc/rc.local
+        mode: '+x'
+
+    - name: Restart rc-local service
+      systemd:
+        name: rc-local
+        state: started
+        enabled: yes
+
+    - name: Restart Docker service
+      systemd:
+        name: docker
+        state: restarted
