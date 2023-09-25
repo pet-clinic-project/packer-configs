@@ -1,44 +1,41 @@
 variable "ami_id" {
   type    = string
-  default = "ami-0735c191cf914754d"
+  default = "ami-03f65b8614a860c29"
+}
+
+variable "consul_server_ip" {
+  type    = string
+  default = "44.230.25.63"
 }
 
 locals {
-    app_name = "Prometheus"
+    app_name = "prometheus_and_grafana_1.0.0"
 }
 
-source "amazon-ebs" "nginx" {
+source "amazon-ebs" "vm" {
   ami_name      = "${local.app_name}"
-  instance_type = "t2.micro"
+  instance_type = "t2.medium"
   region        = "us-west-2"
   source_ami    = "${var.ami_id}"
   ssh_username  = "ubuntu"
   tags = {
-    Env  = "DEMO"
+    Env  = "Dev"
     Name = "${local.app_name}"
   }
 }
 
-variable "consul" {
-  type = object({
-    server = object({
-      ip = string
-    })
-  })
-}
-
 build {
-  sources = ["source.amazon-ebs.nginx"]
+  sources = ["source.amazon-ebs.vm"]
 
   provisioner "ansible" {
     playbook_file = "prometheus.yml"
     extra_arguments = [
-      "--extra-vars", "consul_server_address=${var.consul.server.ip}"
+      "--extra-vars", "consul_server_ip=${var.consul_server_ip}"
     ]
   }
 
   provisioner "ansible" {
     playbook_file = "grafana.yml"
   }
-#command - packer build -var "consul.server.ip = <ip>" vm.pkr.hcl
+#command - packer build -var "consul_server_ip = <ip>" vm.pkr.hcl
 }
