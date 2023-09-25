@@ -49,7 +49,7 @@
           scrape_configs:
             - job_name: 'jmx_exporter'
               consul_sd_configs:
-                - server: "{{consul_server_address}}"
+                - server: "{{consul_server_ip}}"
                   services: ['backend']
               metrics_path: '/metrics'
 
