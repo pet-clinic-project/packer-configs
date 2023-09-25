@@ -14,14 +14,14 @@
 
 - name: Install Jenkins
   apt:
-    name: jenkins=2.387.1
+    name: jenkins={{ jenkins_version }}
     state: present
 
 - name: Reload systemd daemon configuration
   systemd:
     daemon_reload: yes
 
-- name: Start Jnekins Service
+- name: Start Jenkins Service
   systemd:
     name: jenkins
     state: started
