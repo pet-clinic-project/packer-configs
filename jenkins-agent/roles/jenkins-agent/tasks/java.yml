@@ -1,9 +1,7 @@
 ---
-    - name: Update and upgrade apt packages
-      become: true
+    - name: Update apt cache
       apt:
-        upgrade: 'yes'
-        update_cache: 'yes'
+        update_cache: yes
 
     - name: Install dependencies
       become: true

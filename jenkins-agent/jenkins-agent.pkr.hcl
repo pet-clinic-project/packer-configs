@@ -1,10 +1,10 @@
 variable "ami_id" {
   type    = string
-  default = "ami-0735c191cf914754d"
+  default = "ami-0f4e949f4afa4e5a9"
 }
 
 locals {
-    app_name = "jenkins_agent_ami"
+    app_name = "jenkins_agent_1.0.0"
 }
 
 source "amazon-ebs" "jenkins-agent" {
@@ -14,7 +14,7 @@ source "amazon-ebs" "jenkins-agent" {
   source_ami    = "${var.ami_id}"
   ssh_username  = "ubuntu"
   tags = {
-    Env  = "DEMO"
+    Env  = "Dev"
     Name = "${local.app_name}"
   }
 }
