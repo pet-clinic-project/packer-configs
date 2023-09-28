@@ -5,7 +5,7 @@
   remote_user: ubuntu
 
   vars:
-    nexus_version: "3.37.0-01"
+    nexus_version: "3.60.0-02"
 
   tasks:
     # Install JRE
