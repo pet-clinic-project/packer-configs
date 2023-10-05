@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    packer init
+                    packer init jenkins-controller
                     packer validate jenkins-controller/jenkins-controller.pkr.hcl
                     """
                 }
