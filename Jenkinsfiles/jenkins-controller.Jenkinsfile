@@ -10,7 +10,10 @@ pipeline {
         stage('Packer Validate') {
             steps {
                 script {
-                    sh "packer validate jenkins-controller/jenkins-controller.pkr.hcl"
+                    sh """
+                    packer init
+                    packer validate jenkins-controller/jenkins-controller.pkr.hcl
+                    """
                 }
             }
         }
