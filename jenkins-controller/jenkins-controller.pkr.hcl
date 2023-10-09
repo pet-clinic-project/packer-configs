@@ -1,6 +1,6 @@
 variable "ami_id" {
   type    = string
-  default = "ami-0f4e949f4afa4e5a9"
+  default = "ami-03f65b8614a860c29"
 }
 
 variable "jenkins_version" {
@@ -9,7 +9,7 @@ variable "jenkins_version" {
 }
 
 locals {
-  app_name = "jenkins_controller_1.0.0"
+  app_name = "jenkins_controller_1.0.1"
 }
 
 source "amazon-ebs" "jenkins" {
