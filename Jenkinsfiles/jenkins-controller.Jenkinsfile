@@ -18,5 +18,13 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                script {
+                    def packerFilePath = 'jenkins-controller/jenkins-controller.pkr.hcl'
+                    packerBuild(packerFilePath)
+                }
+            }
+        }
     }
 }
