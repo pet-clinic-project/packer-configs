@@ -29,7 +29,7 @@ build {
   sources = ["source.amazon-ebs.jenkins"]
 
   provisioner "ansible" {
-  playbook_file = "jenkins-controller/jenkins-controller.yaml"
+  playbook_file = "jenkins-controller.yaml"
   extra_arguments = ["--extra-vars", "jenkins_version=${var.jenkins_version}"]
   }
 }
