@@ -13,7 +13,8 @@ pipeline {
         stage('Validate') {
             steps {
                 script {
-                    sh 'packer validate jenkins-controller/jenkins-controller.pkr.hcl'
+                    def packerFilePath = 'jenkins-controller/jenkins-controller.pkr.hcl'
+                    packerValidation(packerFilePath)
                 }
             }
         }
