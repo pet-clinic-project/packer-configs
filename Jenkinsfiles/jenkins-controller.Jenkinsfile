@@ -15,7 +15,7 @@ pipeline {
                 script {
                     def packerFile = 'jenkins-controller.pkr.hcl'
                     def projectDir = 'jenkins-controller'
-                    packerValidate(
+                    packerValidation(
                         packerFile,
                         projectDir
                     )
