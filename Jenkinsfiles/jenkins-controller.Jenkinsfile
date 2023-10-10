@@ -13,16 +13,9 @@ pipeline {
         stage('Validate') {
             steps {
                 script {
-                    def packerFilePath = 'jenkins-controller/jenkins-controller.pkr.hcl'
-                    packerValidation(packerFilePath)
-                }
-            }
-        }
-        stage('Build') {
-            steps {
-                script {
-                    def packerFilePath = 'jenkins-controller/jenkins-controller.pkr.hcl'
-                    packerBuild(packerFilePath)
+                    def packerFile = 'jenkins-controller.pkr.hcl'
+                    def projectDir = 'jenkins-controller'
+                    packerValidate(packerFilePath)
                 }
             }
         }
