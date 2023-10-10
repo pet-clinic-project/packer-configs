@@ -13,11 +13,9 @@ pipeline {
         stage('Validate') {
             steps {
                 script {
-                    def packerFile = 'jenkins-controller.pkr.hcl'
-                    def projectDir = 'jenkins-controller'
                     packerValidation(
-                        packerFile,
-                        projectDir
+                        packerFile: 'jenkins-controller.pkr.hcl',
+                        projectDir: 'jenkins-controller'
                     )
                 }
             }
