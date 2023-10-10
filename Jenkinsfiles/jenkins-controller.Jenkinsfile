@@ -22,7 +22,6 @@ pipeline {
             steps {
                 script {
                     def packerFilePath = 'jenkins-controller/jenkins-controller.pkr.hcl'
-                    env('packer_ssh_host_key_checking': 'false')
                     packerBuild(packerFilePath)
                 }
             }
