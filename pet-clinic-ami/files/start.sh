@@ -5,7 +5,7 @@ SECRET_ID=dev/nexus-login
 WORKING_DIR=/home/ubuntu
 NEXUS_URL=http://54.244.121.108:8081
 ARTIFACT_ID=pet-clinic
-ARTIFACT_VERSION=1.0.15
+ARTIFACT_VERSION=1.0.18
 APP_PROPERTIES=/opt/application.properties
 PROPERTIES_SCRIPT=properties.py
 
@@ -19,6 +19,8 @@ username=$(echo "$credentials" | jq -r '.["username"]')
 password=$(echo "$credentials" | jq -r '.["password"]')
 
 curl -u "${username}:${password}" -o "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" "${NEXUS_URL}/repository/maven-releases/org/${ARTIFACT_ID}/${ARTIFACT_VERSION}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar"
+
+sudo systemctl restart consul.service
 
 # to run python script
 sudo python3 "${WORKING_DIR}/${PROPERTIES_SCRIPT}"
