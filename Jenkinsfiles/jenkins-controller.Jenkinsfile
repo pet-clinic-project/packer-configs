@@ -14,8 +14,8 @@ pipeline {
             steps {
                 script {
                     packerValidation(
-                        packerFile: 'jenkins-controller.pkr.hcl',
-                        projectDir: 'jenkins-controller'
+                        packerFile = 'jenkins-controller.pkr.hcl',
+                        projectDir = 'jenkins-controller'
                     )
                 }
             }
