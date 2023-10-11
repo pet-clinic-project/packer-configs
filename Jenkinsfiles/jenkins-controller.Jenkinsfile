@@ -2,7 +2,11 @@
 
 pipeline {
     agent {
-        label 'AGENT-01'
+        docker {
+            image '814200988517.dkr.ecr.us-west-2.amazonaws.com/infra-images:packer-1.0.22'
+            args '-v /var/run/docker.sock:/var/run/docker.sock --privileged -u root'
+            reuseNode true
+        }
     }
 
     stages {
