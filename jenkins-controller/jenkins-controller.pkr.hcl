@@ -13,15 +13,15 @@ locals {
 }
 
 source "amazon-ebs" "jenkins" {
-  ami_name      = "${local.app_name}"
-  instance_type = "t2.medium"
-  region        = "us-west-2"
-  availability_zone = "us-west-2a"
-  source_ami    = "${var.ami_id}"
-  ssh_username  = "ubuntu"
+  ami_name           = local.app_name
+  instance_type      = "t2.medium"
+  region             = "us-west-2"
+  availability_zone  = "us-west-2a"
+  source_ami         = var.ami_id
+  ssh_username       = "ubuntu"
   tags = {
     Env  = "dev"
-    Name = "${local.app_name}"
+    Name = local.app_name
   }
 }
 
@@ -29,8 +29,8 @@ build {
   sources = ["source.amazon-ebs.jenkins"]
 
   provisioner "ansible" {
-  playbook_file = "jenkins-controller.yaml"
-  extra_arguments = ["--extra-vars", "jenkins_version=${var.jenkins_version}"]
+    playbook_file     = "jenkins-controller.yaml"
+    extra_arguments   = ["--extra-vars", "jenkins_version=${var.jenkins_version}"]
+    ansible_ssh_extra_args = "-oHostKeyAlgorithms=ssh-rsa"
   }
 }
-  
