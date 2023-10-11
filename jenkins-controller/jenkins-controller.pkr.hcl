@@ -18,7 +18,7 @@ source "amazon-ebs" "jenkins" {
   region        = "us-west-2"
   availability_zone = "us-west-2a"
   source_ami    = "${var.ami_id}"
-  ssh_username  = "root"
+  ssh_username  = "ubuntu"
   tags = {
     Env  = "dev"
     Name = "${local.app_name}"
