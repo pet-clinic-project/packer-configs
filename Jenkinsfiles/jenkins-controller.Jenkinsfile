@@ -9,13 +9,18 @@ pipeline {
         }
     }
 
+    parameters {
+        choice(name: 'PACKER_FILE', choices: ['jenkins-controller.pkr.hcl', 'jenkins-agent.pkr.hcl'], description: 'Packer file name')
+        choice(name: 'PROJECT_DIR', choices: ['jenkins-controller', 'jenkins-agent'], description: 'Project directory name')
+    }
+
     stages {
         stage('Validate') {
             steps {
                 script {
-                    packerValidation(
-                        packerFile = 'jenkins-controller.pkr.hcl',
-                        projectDir = 'jenkins-controller'
+                    packer.validate(
+                        packerFile = 'params.PACKER_FILE',
+                        projectDir = 'params.PROJECT_DIR'
                     )
                 }
             }
@@ -23,9 +28,9 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    packerBuild(
-                        packerFile = 'jenkins-controller.pkr.hcl',
-                        projectDir = 'jenkins-controller'
+                    packer.build(
+                        packerFile = 'params.PACKER_FILE',
+                        projectDir = 'params.PROJECT_DIR'
                     )
                 }
             }
