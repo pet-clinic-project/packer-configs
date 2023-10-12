@@ -10,8 +10,23 @@ pipeline {
     }
 
     parameters {
-        choice(name: 'PACKER_FILE', choices: ['jenkins-controller.pkr.hcl', 'jenkins-agent.pkr.hcl'], description: 'Packer file name')
-        choice(name: 'PROJECT_DIR', choices: ['jenkins-controller', 'jenkins-agent'], description: 'Project directory name')
+        choice(name: 'PACKER_FILE', choices: [
+            'jenkins-controller.pkr.hcl',
+            'jenkins-agent.pkr.hcl',
+            'consul.pkr.hcl',
+            'nexus.pkr.hcl',
+            'prometheus&grafana.pkr.hcl',
+            'pet-clinic.pkr.hcl'
+            ], description: 'Packer file name')
+
+        choice(name: 'PROJECT_DIR', choices: [
+            'jenkins-controller',
+            'jenkins-agent',
+            'consul',
+            'nexus',
+            'prometheus&grafana',
+            'pet-clinic'
+            ], description: 'Project directory name')
     }
 
     stages {
