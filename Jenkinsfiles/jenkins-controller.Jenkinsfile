@@ -19,8 +19,8 @@ pipeline {
             steps {
                 script {
                     packer.validate(
-                        packerFile = 'params.PACKER_FILE',
-                        projectDir = 'params.PROJECT_DIR'
+                        packerFile: params.PACKER_FILE,
+                        projectDir: params.PROJECT_DIR
                     )
                 }
             }
@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     packer.build(
-                        packerFile = 'params.PACKER_FILE',
-                        projectDir = 'params.PROJECT_DIR'
+                        packerFile: params.PACKER_FILE,
+                        projectDir: params.PROJECT_DIR
                     )
                 }
             }
