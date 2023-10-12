@@ -24,6 +24,7 @@ build {
 
   provisioner "ansible" {
     playbook_file = "jenkins-agent.yml"
+    ansible_ssh_extra_args = ["-oHostKeyAlgorithms=ssh-rsa"]
   }
 
 }
