@@ -15,7 +15,7 @@ pipeline {
             'jenkins-agent.pkr.hcl',
             'consul.pkr.hcl',
             'nexus.pkr.hcl',
-            'prometheus&grafana.pkr.hcl',
+            'prometheus-grafana.pkr.hcl',
             'pet-clinic.pkr.hcl'
             ], description: 'Packer file name')
 
@@ -24,7 +24,7 @@ pipeline {
             'jenkins-agent',
             'consul',
             'nexus',
-            'prometheus&grafana',
+            'prometheus-grafana',
             'pet-clinic'
             ], description: 'Project directory name')
     }

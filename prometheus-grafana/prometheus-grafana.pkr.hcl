@@ -9,7 +9,7 @@ variable "consul_server_ip" {
 }
 
 locals {
-    app_name = "prometheus_and_grafana_1.0.0"
+    app_name = "prometheus_and_grafana_1.0.1"
 }
 
 source "amazon-ebs" "vm" {
