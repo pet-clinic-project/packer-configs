@@ -4,7 +4,7 @@ variable "ami_id" {
 }
 
 locals {
-    app_name = "pet-clinic-1.0.1"
+    app_name = "pet-clinic-1.0.2"
 }
 
 source "amazon-ebs" "pet-clinic" {
@@ -22,7 +22,7 @@ source "amazon-ebs" "pet-clinic" {
 
 variable "consul_server_ip" {
   type    = string
-  default = "35.162.64.207"
+  default = "consul.devopsproject.dev"
 }
 
 build {
