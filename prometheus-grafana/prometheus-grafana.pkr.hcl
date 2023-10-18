@@ -5,11 +5,11 @@ variable "ami_id" {
 
 variable "consul_server_ip" {
   type    = string
-  default = "44.230.25.63"
+  default = "consul.devopsproject.dev"
 }
 
 locals {
-    app_name = "prometheus_and_grafana_1.0.0"
+    app_name = "prometheus_and_grafana_1.0.2"
 }
 
 source "amazon-ebs" "vm" {

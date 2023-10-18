@@ -4,12 +4,12 @@ variable "ami_id" {
 }
 
 locals {
-    app_name = "jenkins_agent_1.0.1"
+    app_name = "consul_1.0.1"
 }
 
-source "amazon-ebs" "jenkins-agent" {
+source "amazon-ebs" "consul" {
   ami_name      = "${local.app_name}"
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
   region        = "us-west-2"
   source_ami    = "${var.ami_id}"
   ssh_username  = "ubuntu"
@@ -20,11 +20,10 @@ source "amazon-ebs" "jenkins-agent" {
 }
 
 build {
-  sources = ["source.amazon-ebs.jenkins-agent"]
+  sources = ["source.amazon-ebs.consul"]
 
   provisioner "ansible" {
-    playbook_file = "jenkins-agent.yml"
-    ansible_ssh_extra_args = ["-oHostKeyAlgorithms=ssh-rsa"]
+    playbook_file = "consul-server.yaml"
   }
 
 }

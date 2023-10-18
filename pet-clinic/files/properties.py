@@ -28,7 +28,7 @@ with open(consul_file_path, 'r') as f:
 file_contents = file_contents.replace("spring.datasource.url=jdbc:mysql://localhost:3306/petclinic", f"spring.datasource.url={rds_endpoint}")
 file_contents = file_contents.replace("spring.datasource.username=petclinic", f"spring.datasource.username={database_details['username']}")
 file_contents = file_contents.replace("spring.datasource.password=petclinic", f"spring.datasource.password={database_details['password']}")
-consul_file = consul_file.replace("encrypt = encrypt", f'encrypt="{database_details["consul"]}"')
+consul_file = consul_file.replace("encrypt = encrypt", f'encrypt = "{database_details["consul"]}"')
 
 
 with open(file_path, 'w') as f:

@@ -5,7 +5,7 @@
   remote_user: ubuntu
 
   vars:
-    source_dir: /home/ubuntu/workspace/APPLICATION PIPELINES/app/files
+    source_dir: files
     dest_dir: /home/ubuntu/
     files:
       - config.yml
