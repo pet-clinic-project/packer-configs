@@ -3,7 +3,7 @@ Description=Consul service
 After=network.target
 
 [Service]
-ExecStart=/usr/bin/consul agent -dev -config-dir /etc/consul.d
+ExecStart=/usr/bin/consul agent -config-dir /etc/consul.d
 Restart=always
 User=root
 Group=nogroup
