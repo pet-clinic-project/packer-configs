@@ -7,17 +7,17 @@
     
     - name: Download Prometheus
       get_url:
-        url: "https://github.com/prometheus/prometheus/releases/download/v2.42.0/prometheus-2.42.0.linux-amd64.tar.gz"
-        dest: "/tmp/prometheus-2.42.0.linux-amd64.tar.gz"
+        url: "https://github.com/prometheus/prometheus/releases/download/v2.47.2/prometheus-2.47.2.linux-amd64.tar.gz"
+        dest: "/tmp/prometheus-2.47.2.linux-amd64.tar.gz"
 
     - name: Extract Prometheus
       unarchive:
-        src: "/tmp/prometheus-2.42.0.linux-amd64.tar.gz"
+        src: "/tmp/prometheus-2.47.2.linux-amd64.tar.gz"
         dest: "/tmp/"
         remote_src: yes
     
     - name: copy directory
-      command: cp -r /tmp/prometheus-2.42.0.linux-amd64 /tmp/prometheus-files
+      command: cp -r /tmp/prometheus-2.47.2.linux-amd64 /tmp/prometheus-files
 
     - name: Create new group
       group:
