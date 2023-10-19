@@ -10,7 +10,7 @@ APP_PROPERTIES=/opt/application.properties
 PROPERTIES_SCRIPT=properties.py
 
 # download from s3
-aws s3 cp s3://petclinic-project/jar/jmx_prometheus_javaagent-0.18.0.jar "${WORKING_DIR}/jmx_prometheus_javaagent-0.18.0.jar"
+aws s3 cp s3://petclinic-project/jar/jmx_prometheus_javaagent-0.19.0.jar "${WORKING_DIR}/jmx_prometheus_javaagent-0.19.0.jar"
 
 # download from nexus
 credentials=$(aws secretsmanager get-secret-value --secret-id "${SECRET_ID}" --region "${REGION}" --query SecretString --output json)
@@ -20,11 +20,11 @@ password=$(echo "$credentials" | jq -r '.["password"]')
 
 curl -u "${username}:${password}" -o "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" "${NEXUS_URL}/repository/maven-releases/org/${ARTIFACT_ID}/${ARTIFACT_VERSION}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar"
 
-sudo systemctl restart consul.service
-
 # to run python script
 sudo python3 "${WORKING_DIR}/${PROPERTIES_SCRIPT}"
 
 # start jmx and petclinic application jar file
 sudo java -jar "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" --spring.config.location="${APP_PROPERTIES}" --spring.profiles.active=mysql & \
-java -javaagent:"${WORKING_DIR}/jmx_prometheus_javaagent-0.18.0.jar"=9090:"${WORKING_DIR}/config.yml" -jar "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" &
+java -javaagent:"${WORKING_DIR}/jmx_prometheus_javaagent-0.19.0.jar"=9090:"${WORKING_DIR}/config.yml" -jar "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" &
+
+sudo systemctl restart consul
