@@ -24,7 +24,6 @@ curl -u "${username}:${password}" -o "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_V
 sudo python3 "${WORKING_DIR}/${PROPERTIES_SCRIPT}"
 
 # start jmx and petclinic application jar file
-sudo java -jar "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" --spring.config.location="${APP_PROPERTIES}" --spring.profiles.active=mysql & \
-java -javaagent:"${WORKING_DIR}/jmx_prometheus_javaagent-0.19.0.jar"=9090:"${WORKING_DIR}/config.yml" -jar "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" &
+java -javaagent:"${WORKING_DIR}/jmx_prometheus_javaagent-0.19.0.jar"=9090:"${WORKING_DIR}/config.yml" -jar "${WORKING_DIR}/${ARTIFACT_ID}-${ARTIFACT_VERSION}.jar" --spring.config.location="${APP_PROPERTIES}" --spring.profiles.active=mysql &
 
 sudo systemctl restart consul

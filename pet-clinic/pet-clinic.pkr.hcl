@@ -4,7 +4,7 @@ variable "ami_id" {
 }
 
 locals {
-    app_name = "pet-clinic-1.0.5"
+    app_name = "pet-clinic-1.0.6"
 }
 
 source "amazon-ebs" "pet-clinic" {
